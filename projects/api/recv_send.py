@@ -6,6 +6,8 @@ import projects
 import subprocess
 import sys
 import socket
+import time
+
 
 @projects.app.route('/api/<string:command>', methods=["GET"])
 def recv_send(command):
@@ -27,6 +29,7 @@ def recv_send(command):
     sock_send.sendall(register_message.encode('utf-8'))
     sock_send.close()
     while True:
+        time.sleep(0.25)
         try:
             master_socket, address = sock_recv.accept()
         except socket.timeout:
@@ -35,6 +38,7 @@ def recv_send(command):
         message_chunks = []
 
         while True:
+            time.sleep(0.25)
             data = master_socket.recv(4096)
             if data:
             # Decode data into a json file
