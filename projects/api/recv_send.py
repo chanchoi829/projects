@@ -31,7 +31,7 @@ def recv_send(command):
         try:
             master_socket, address = sock_recv.accept()
         except socket.timeout:
-            print ("Timeout")
+            continue
 
         message_chunks = []
 
