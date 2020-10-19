@@ -1,0 +1,16 @@
+.cache/v/cache/
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info*
+dist/
+env/
+venv/
+venv3/
+.venv/
+
+# JavaScript
+bundle.js
+node_modules/
+*/var/*
