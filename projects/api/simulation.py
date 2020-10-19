@@ -14,7 +14,9 @@ from io import StringIO
 PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
 SHIP_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'ship')
 OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
+TEST_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'test.txt')
 OUTPUT = open(OUTPUT_FILENAME, "w")
+TEST = open(TEST_FILENAME, "a")
 
 
 @projects.app.route('/api', methods=["GET"])
@@ -60,9 +62,12 @@ def run_simulation():
                 command += a
         command += "\n"
         proc.stdin.write(command)
+        TEST.write(command)
         f = open(OUTPUT_FILENAME, "r")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
         sock_send.sendall(f.read().encode("utf-8"))
+        f.close()
+
 
     return "Finished"
