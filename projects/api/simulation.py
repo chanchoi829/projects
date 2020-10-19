@@ -60,8 +60,9 @@ def run_simulation():
                 command += a
         command += "\n"
         proc.stdin.write(command)
+        f = open(OUTPUT_FILENAME, "r")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
-        sock_send.sendall("Done".encode("utf-8"))
+        sock_send.sendall(f.read().encode("utf-8"))
 
     return "Finished"
