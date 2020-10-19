@@ -17,7 +17,7 @@ SHIP_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'ship')
 @projects.app.route('/api', methods=["GET"])
 def run_simulation():
     """Run simulation."""
-    proc = subprocess.Popen([SHIP_FILENAME], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+    proc = subprocess.Popen([SHIP_FILENAME], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         # Setup a socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -56,14 +56,10 @@ def run_simulation():
                 command += a
         command += "\n"
         proc.stdin.write(command.encode("utf-8"))
-        #line = proc.stdout.readline()
-        #proc.stdout.read
-        #lines = proc.stdout
-        #for line in lines:
-            #print(line)
-        #print(proc.stdout.readline())
+        proc.stdin.write("quit\n".encode("utf-8"))
+        lol = proc.communicate()[0]
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
-        sock_send.sendall(command.encode("utf-8"))
+        sock_send.sendall(lol)
 
     return "Finished"

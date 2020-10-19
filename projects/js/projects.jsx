@@ -42,14 +42,28 @@ class Projects extends React.Component {
       setTimeout(this.render, 1);
       return null;
     }
+    let display = [];
+    let tmp = '';
+    for(let i = 0; i < this.state.output.length; i++) {
 
+      if (this.state.output[i] === '\n') {
+        display.push(tmp);
+        display.push(<br></br>);
+        tmp = '';
+      }
+      else {
+        tmp += this.state.output[i];
+      }
+    }
+    display.push(tmp);
+    display.push(<br></br>);
     return (
       <div id="parent">
         <form onSubmit={this.handleSubmit} id="input-form">
           <input type="text" value={this.state.value} onChange={this.handleChange} />
           <input type="submit" value="input" />
         </form>
-        {this.state.output}
+        {display}
       </div>
     );
   }
