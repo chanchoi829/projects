@@ -44,7 +44,7 @@ def run_simulation():
             time.sleep(0.5)
             data = clientsocket.recv(4096)
             if not data:
-                continue
+                break;
 
             message_chunks.append(data)
 
