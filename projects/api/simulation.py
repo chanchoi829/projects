@@ -30,7 +30,7 @@ def run_simulation():
     sock.settimeout(1)
 
     while True:
-        time.sleep(2)
+        time.sleep(0.5)
         try:
             clientsocket, address = sock.accept()
         except socket.timeout:
@@ -41,7 +41,7 @@ def run_simulation():
         # While loop for reading a client's message if
         # this server receives one
         while True:
-            time.sleep(2)
+            time.sleep(0.5)
             data = clientsocket.recv(4096)
             if not data:
                 break
