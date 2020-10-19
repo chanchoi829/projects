@@ -25,7 +25,6 @@ def recv_send(command):
     # Send a register message
     register_message = '{"command": "'+ command + '"}'
     sock_send.sendall(register_message.encode('utf-8'))
-    print(register_message)
     sock_send.close()
     while True:
         try:
@@ -43,7 +42,6 @@ def recv_send(command):
                 message_bytes = b''.join(message_chunks)
                 message_str = message_bytes.decode("utf-8")
                 context['output'] = message_str
-                print(message_str + 'works')
                 return flask.jsonify(**context)
 
     return flask.jsonify(**context)
