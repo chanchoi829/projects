@@ -29,7 +29,7 @@ def recv_send(command):
     sock_send.sendall(register_message.encode('utf-8'))
     sock_send.close()
     while True:
-        time.sleep(0.25)
+        time.sleep(2)
         try:
             master_socket, address = sock_recv.accept()
         except socket.timeout:
@@ -38,10 +38,10 @@ def recv_send(command):
         message_chunks = []
 
         while True:
-            time.sleep(0.25)
+            time.sleep(2)
             data = master_socket.recv(4096)
             if data:
-            # Decode data into a json file
+                # Decode data into a json file
                 message_chunks.append(data)
                 message_bytes = b''.join(message_chunks)
                 message_str = message_bytes.decode("utf-8")
