@@ -42,6 +42,8 @@ class Projects extends React.Component {
       setTimeout(this.render, 1);
       return null;
     }
+
+
     let display = [];
     let tmp = '';
     for(let i = 0; i < this.state.output.length; i++) {
