@@ -4,7 +4,7 @@ import re
 import flask
 import projects
 import subprocess
-from subprocess import Popen, PIPE, STDOUT
+from subprocess import Popen, PIPE, STDOUT, run
 import sys
 import socket
 import time
@@ -14,13 +14,13 @@ from io import StringIO
 PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
 SHIP_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'c++', 'simulation')
 OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
-OUTPUT = open(OUTPUT_FILENAME, "w")
 
 
 @projects.app.route('/api', methods=["GET"])
 def run_simulation():
     """Run simulation."""
-    proc = subprocess.Popen([SHIP_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=OUTPUT)
+    output = open(OUTPUT_FILENAME, "w")
+    proc = Popen([SHIP_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=output)
         # Setup a socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -28,7 +28,7 @@ def run_simulation():
 
     sock.listen(5)
     sock.settimeout(1)
-
+    times = 0
     while True:
         time.sleep(0.5)
         try:
@@ -60,11 +60,15 @@ def run_simulation():
                 command += a
         command += "\n"
         proc.stdin.write(command)
-        f = open(OUTPUT_FILENAME, "r")
+        f = open(OUTPUT_FILENAME, "r+")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
         sock_send.sendall(f.read().encode("utf-8"))
         f.close()
-
+        times += 1
+        # Clear output
+        if times == 2:
+            
+            times = 0
 
     return "Finished"

@@ -9,6 +9,10 @@ import socket
 import time
 
 
+PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
+OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
+
+
 @projects.app.route('/api/<string:command>', methods=["GET"])
 def recv_send(command):
     """Receive send receive."""
@@ -45,7 +49,9 @@ def recv_send(command):
                 message_chunks.append(data)
                 message_bytes = b''.join(message_chunks)
                 message_str = message_bytes.decode("utf-8")
-                context['output'] = message_str
+                f = open(OUTPUT_FILENAME, "r")
+                context['output'] = f.read()
+                f.close()
                 return flask.jsonify(**context)
 
     return flask.jsonify(**context)
