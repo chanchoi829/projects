@@ -21,19 +21,22 @@ class Simulation extends React.Component {
     if (this.state.command === '') {
       return;
     }
-
     const commandUrl = `/api/simulation/${this.state.command}`;
-    fetch(commandUrl, { credentials: 'same-origin' })
-      .then((response) => {
-        if (!response.ok) throw Error(response.statusText);
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          output: data.output,
-        });
-      })
-      .catch(error => console.log(error));// eslint-disable-line no-console
+    setTimeout(() => {
+      
+      fetch(commandUrl, { credentials: 'same-origin' })
+        .then((response) => {
+          if (!response.ok) throw Error(response.statusText);
+          return response.json();
+        })
+        .then((data) => {
+          this.setState({
+            output: data.output,
+          });
+        })
+        .catch(error => console.log(error));
+    }, 2000);
+    // eslint-disable-line no-console
 
     event.preventDefault();
     event.target.reset();
