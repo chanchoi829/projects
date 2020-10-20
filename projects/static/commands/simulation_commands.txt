@@ -1,0 +1,91 @@
+View Commands:
+
+
+
+open_map_view - create the Map View and attach to the Model.
+
+close_map_view - close the Map View
+
+open_sailing_view - open the Sailing View
+
+close_sailing_view - close the Sailing View
+
+open_local_view - open a Local View of a Ship
+
+close_local_view - close a Local View of a Ship
+
+default - restore the default settings of the map
+
+size - read an integer for the size of the map
+
+zoom - read a double for the scale of the Map
+
+pan - read double values for  the origin of the Map
+
+show - tell the Map View to draw the Map
+
+
+
+Ship Commands:
+
+
+
+course - read a compass heading and a speed (doubles)
+Check: 0.0 <= compass heading < 360.0, speed >= 0.0
+
+position - read an (x, y) position and a speed (doubles) for a Ship to go to
+Check: x, y can have any value, speed >= 0.0
+
+destination - read an Island name and a speed (double) for a Ship to go to
+Check:  Island must exist, speed >= 0.0
+
+load_at - tell a Tanker to load at an Island
+Check: Island must exist
+
+unload_at - tell a Tanker to unload at an Island
+Check: Island must exist
+
+chain_all - tell a Chain_ship to chain all other Ships
+
+chain - tell a Chain_ship to chain a Ship
+
+unchain - tell a Chain_ship to unchain its Ship
+
+dock_at - tell a Ship to dock at an Island
+Check: Island must exist
+
+attack - tell a Warship to attack a Ship
+Check: Ship must exist
+
+refuel - tell a Ship to refuel
+
+stop - tell a Ship to stop whatever it's doing
+
+stop_attack - tell a Warship to stop attacking
+
+
+
+
+Model Commands:
+
+
+
+quit - quit the program
+
+status - tell all objects to describe themselves
+
+go - call the Model::update() function to update the status of all objects
+
+create - create a new Ship
+
+create_group - create a group
+
+remove_group - remove a group
+
+remove_ship_from_group - remove a certain Ship from a group
+
+add_ship_to_group - add a Ship to a group
+
+add_group_to_group - add a group to a group
+
+describe_groups - describe all groups

@@ -18,7 +18,7 @@ class Projects extends React.Component {
 
   handleSubmit(event) {
     this.setState({ command: event.target.value });
-    if (this.state.command === '') {
+    if (this.state.command === '' || this.state.command === 'quit') {
       return;
     }
     const commandUrl = `/api/${this.state.command}`;
@@ -63,7 +63,10 @@ class Projects extends React.Component {
       <div id="parent">
         <form onSubmit={this.handleSubmit} id="input-form">
           <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <input type="submit" value="input" />
+          <input type="submit" value="send" />
+          <a href="../static/commands/simulation_commands.txt" target="_blank"> commands </a>
+          <a href="../static/commands/simulation_README.md" target="_blank"> README </a>
+          <a href="https://github.com/chanchoi829/simulation" target="_blank"> GitHub </a>
         </form>
         {display}
       </div>
