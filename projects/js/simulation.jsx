@@ -1,4 +1,6 @@
 import React from 'react';
+import '../static/css/projects.css';
+
 
 class Simulation extends React.Component {
   constructor(props) {
@@ -63,7 +65,7 @@ class Simulation extends React.Component {
     display.push(tmp);
     display.push(<br></br>);
     return (
-      <div id="parent">
+      <div class="left">
         <form onSubmit={this.handleSubmit} id="input-form">
           <input type="text" value={this.state.value} onChange={this.handleChange} />
           <input type="submit" value="send" />
