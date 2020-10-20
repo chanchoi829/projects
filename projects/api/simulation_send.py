@@ -51,7 +51,7 @@ def recv_send(command):
                 message_str = message_bytes.decode("utf-8")
                 context = {}
                 if message_str == "Quit":
-                    context["output"] = "Click on \"start simulation api\" to continue"
+                    context["output"] = "Click to continue"
                 else:
                     f = open(OUTPUT_FILENAME, "r")
                     context["output"] = f.read()

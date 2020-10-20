@@ -1,3 +1,9 @@
 .left {
-    color: blue;
+    float: left;
+    width: 500px;
+}
+
+.right {
+    float: right;
+    width: 500px;
 }
