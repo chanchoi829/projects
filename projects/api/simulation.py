@@ -8,7 +8,6 @@ from subprocess import Popen, PIPE, STDOUT, run
 import sys
 import socket
 import time
-from io import StringIO
 
 
 PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -60,15 +59,11 @@ def run_simulation():
                 command += a
         command += "\n"
         proc.stdin.write(command)
-        f = open(OUTPUT_FILENAME, "r+")
+        f = open(OUTPUT_FILENAME, "r")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
         sock_send.sendall("Done".encode("utf-8"))
         f.close()
-        times += 1
-        # Clear output
-        if times == 2:
-            
-            times = 0
+
 
     return "Finished"
