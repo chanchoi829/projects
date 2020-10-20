@@ -1,4 +1,4 @@
-kill simulation
+pkill simulation
 pkill flask
 rm ./projects/var/sim_output.txt
 touch ./projects/var/sim_output.txt
