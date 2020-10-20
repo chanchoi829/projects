@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Projects extends React.Component {
+class Simulation extends React.Component {
   constructor(props) {
     // Initialize mutable state
     super(props);
@@ -18,10 +18,17 @@ class Projects extends React.Component {
 
   handleSubmit(event) {
     this.setState({ command: event.target.value });
-    if (this.state.command === '' || this.state.command === 'quit') {
+    if (this.state.command === '') {
       return;
     }
-    const commandUrl = `/api/${this.state.command}`;
+
+    let is_quit = false;
+
+    if (this.state.command === 'quit') {
+      is_quit = true;
+    }
+
+    const commandUrl = `/api/simulation/${this.state.command}`;
     fetch(commandUrl, { credentials: 'same-origin' })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -33,6 +40,11 @@ class Projects extends React.Component {
         });
       })
       .catch(error => console.log(error));// eslint-disable-line no-console
+    if (is_quit === true) {
+      this.setState({
+        output: '',
+      })
+    }
     event.preventDefault();
     event.target.reset();
   }
@@ -43,11 +55,9 @@ class Projects extends React.Component {
       return null;
     }
 
-
     let display = [];
     let tmp = '';
     for(let i = 0; i < this.state.output.length; i++) {
-
       if (this.state.output[i] === '\n') {
         display.push(tmp);
         display.push(<br></br>);
@@ -68,10 +78,11 @@ class Projects extends React.Component {
           <a href="../static/commands/simulation_README.md" target="_blank"> README </a>
           <a href="https://github.com/chanchoi829/simulation" target="_blank"> GitHub </a>
         </form>
+        <a href="http://localhost:8000/api" target="_blank">start simulation api</a>
         {display}
       </div>
     );
   }
 }
 
-export default Projects;
+export default Simulation;

@@ -18,6 +18,7 @@ OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
 @projects.app.route('/api', methods=["GET"])
 def run_simulation():
     """Run simulation."""
+    print("DUDE WHAT THE FUCK")
     output = open(OUTPUT_FILENAME, "w")
     proc = Popen([SHIP_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=output)
         # Setup a socket

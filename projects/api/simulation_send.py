@@ -13,7 +13,7 @@ PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
 OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
 
 
-@projects.app.route('/api/<string:command>', methods=["GET"])
+@projects.app.route('/api/simulation/<string:command>', methods=["GET"])
 def recv_send(command):
     """Receive send receive."""
     context = {}

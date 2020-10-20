@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Projects from './projects';
+import Simulation from './simulation';
 
 ReactDOM.render(
-  <Projects url="/" />,
+  <Simulation url="/" />,
   document.getElementById('reactEntry'),
 );
