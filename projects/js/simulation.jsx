@@ -68,7 +68,7 @@ class Simulation extends React.Component {
           <a href="../static/commands/simulation_README.md" target="_blank"> README </a>
           <a href="https://github.com/chanchoi829/simulation" target="_blank"> GitHub </a>
         </form>
-        <a href="http://localhost:8000/api/simulation" target="_blank">start simulation api ONLY CLICK ON THIS AFTER YOU TYPE "quit"</a>
+        <a href="http://157.230.189.229/api/simulation" target="_blank">start simulation api ONLY CLICK ON THIS AFTER YOU TYPE "quit"</a>
         {display}
       </div>
     );
