@@ -15,10 +15,9 @@ SHIP_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'c++', 'simulation')
 OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
 
 
-@projects.app.route('/api', methods=["GET"])
+@projects.app.route('/api/simulation', methods=["GET"])
 def run_simulation():
     """Run simulation."""
-    print("DUDE WHAT THE FUCK")
     output = open(OUTPUT_FILENAME, "w")
     proc = Popen([SHIP_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=output)
         # Setup a socket
@@ -63,8 +62,22 @@ def run_simulation():
         f = open(OUTPUT_FILENAME, "r")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock_send.connect(("localhost", 6000))
-        sock_send.sendall("Done".encode("utf-8"))
         f.close()
+
+        is_quit = ""
+        for a in command:
+            if a >= 'a' and a <= 'z':
+                is_quit += a
+
+        if is_quit == "quit":
+            output.close()
+            context = {}
+            context["output"] = "Quit"
+            sock_send.sendall("Quit".encode("utf-8"))
+            return flask.jsonify(**context)
+        else:
+            sock_send.sendall("Done".encode("utf-8"))
+
 
 
     return "Finished"

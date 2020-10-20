@@ -22,12 +22,6 @@ class Simulation extends React.Component {
       return;
     }
 
-    let is_quit = false;
-
-    if (this.state.command === 'quit') {
-      is_quit = true;
-    }
-
     const commandUrl = `/api/simulation/${this.state.command}`;
     fetch(commandUrl, { credentials: 'same-origin' })
       .then((response) => {
@@ -40,11 +34,7 @@ class Simulation extends React.Component {
         });
       })
       .catch(error => console.log(error));// eslint-disable-line no-console
-    if (is_quit === true) {
-      this.setState({
-        output: '',
-      })
-    }
+
     event.preventDefault();
     event.target.reset();
   }
@@ -78,7 +68,7 @@ class Simulation extends React.Component {
           <a href="../static/commands/simulation_README.md" target="_blank"> README </a>
           <a href="https://github.com/chanchoi829/simulation" target="_blank"> GitHub </a>
         </form>
-        <a href="http://localhost:8000/api" target="_blank">start simulation api</a>
+        <a href="http://localhost:8000/api/simulation" target="_blank">start simulation api ONLY CLICK ON THIS AFTER YOU TYPE "quit"</a>
         {display}
       </div>
     );

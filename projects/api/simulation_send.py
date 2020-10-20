@@ -49,9 +49,13 @@ def recv_send(command):
                 message_chunks.append(data)
                 message_bytes = b''.join(message_chunks)
                 message_str = message_bytes.decode("utf-8")
-                f = open(OUTPUT_FILENAME, "r")
-                context['output'] = f.read()
-                f.close()
+                context = {}
+                if message_str == "Quit":
+                    context["output"] = "Click on \"start simulation api\" to continue"
+                else:
+                    f = open(OUTPUT_FILENAME, "r")
+                    context["output"] = f.read()
+                    f.close()
                 return flask.jsonify(**context)
 
     return flask.jsonify(**context)
