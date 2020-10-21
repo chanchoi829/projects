@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  stats: 'errors-only',
   entry: './projects/js/main.jsx',
   output: {
     path: path.join(__dirname, '/projects/static/js/'),

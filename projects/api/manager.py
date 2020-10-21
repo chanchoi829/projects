@@ -11,19 +11,19 @@ import time
 
 
 PACKAGE_DIR = os.path.dirname(os.path.dirname(__file__))
-SHIP_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'c++', 'simulation')
-OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'sim_output.txt')
+MANAGER_FILENAME = os.path.join(PACKAGE_DIR, 'static', 'c++', 'manager')
+OUTPUT_FILENAME = os.path.join(PACKAGE_DIR, 'var', 'man_output.txt')
 
 
-@projects.app.route('/api/simulation', methods=["GET"])
-def run_simulation():
+@projects.app.route('/api/manager', methods=["GET"])
+def run_manager():
     """Run simulation."""
     output = open(OUTPUT_FILENAME, "w")
-    proc = Popen([SHIP_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=output)
+    proc = Popen([MANAGER_FILENAME], bufsize = 1, universal_newlines=1, stdin=PIPE, stdout=output)
         # Setup a socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind(('localhost', 3000))
+    sock.bind(('localhost', 2500))
 
     sock.listen(5)
     sock.settimeout(1)
@@ -61,7 +61,7 @@ def run_simulation():
         proc.stdin.write(command)
         f = open(OUTPUT_FILENAME, "r")
         sock_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock_send.connect(("localhost", 6000))
+        sock_send.connect(("localhost", 2800))
         f.close()
 
         is_quit = ""
@@ -69,7 +69,7 @@ def run_simulation():
             if a >= 'a' and a <= 'z':
                 is_quit += a
 
-        if is_quit == "quit":
+        if is_quit == "qq":
             output.close()
             context = {}
             context["output"] = "Quit"

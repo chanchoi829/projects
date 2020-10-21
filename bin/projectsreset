@@ -1,3 +1,4 @@
+pkill manager
 pkill simulation
 pkill flask
 rm ./projects/var/sim_output.txt
