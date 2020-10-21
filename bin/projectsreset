@@ -3,3 +3,5 @@ pkill simulation
 pkill flask
 rm ./projects/var/sim_output.txt
 touch ./projects/var/sim_output.txt
+rm ./projects/var/man_output.txt
+touch ./projects/var/man_output.txt
