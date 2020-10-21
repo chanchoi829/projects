@@ -77,6 +77,7 @@ class Manager extends React.Component {
             <input type="text" value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="send" />
           </form>
+          <a href="http://www.chanchoi829.com/" target="_blank">Ship Game Simulation</a>
           <a href="http://www.chanchoi829.com/api/manager" target="_blank">Click me after "quit"</a>
           {display}
         </div>
