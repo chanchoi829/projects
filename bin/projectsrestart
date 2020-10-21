@@ -2,6 +2,9 @@ export FLASK_DEBUG=True
 export FLASK_APP=projects
 pkill flask
 pkill simulation
+pkill manager
 rm ./projects/var/sim_output.txt
 touch ./projects/var/sim_output.txt
+rm ./projects/var/man_output.txt
+touch ./projects/var/man_output.txt
 nohup flask run --host 0.0.0.0 --port 8000 &
