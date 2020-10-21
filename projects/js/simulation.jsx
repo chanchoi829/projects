@@ -24,6 +24,30 @@ class Simulation extends React.Component {
     if (this.state.command === '') {
       return;
     }
+
+    let check = this.state.command;
+    let quit = false;
+    let another = false;
+    for (let i = 0; i < check.length - 3; i++) {
+      if (check[i] === 'q' && check[i + 1] === 'u' &&
+        check[i + 2] === 'i'&& check[i + 3] === 't') {
+        quit = true;
+      }
+    }
+
+    for (let i = 0; i < check.length; i++) {
+      if (check[i] !== 'q' && check[i] !== 'u' && check[i] !== 'i' &&
+        check[i] !== 't'){
+        another = true;
+      }
+    }
+
+    if (quit === true && another === true) {
+      event.preventDefault();
+      event.target.reset();
+      return;
+    }
+
     const commandUrl = `/api/simulation/${this.state.command}`;
     setTimeout(() => {
       

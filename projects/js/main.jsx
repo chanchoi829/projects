@@ -16,4 +16,3 @@ else {
     document.getElementById('reactEntry'),
   );
 }
-

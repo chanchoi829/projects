@@ -24,6 +24,28 @@ class Manager extends React.Component {
     if (this.state.command === '') {
       return;
     }
+
+    let check = this.state.command;
+    let qq = false;
+    let another = false;
+    for (let i = 0; i < check.length - 1; i++) {
+      if (check[i] === 'q' && check[i + 1] === 'q') {
+        qq = true;
+      }
+      if (check[i] !== 'q' && check[i] !== ' ') {
+        another = true;
+      }
+      if (check[i + 1] !== 'q' && check[i + 1] !== ' ') {
+        another = true;
+      }
+    }
+
+    if (qq === true && another === true) {
+      event.preventDefault();
+      event.target.reset();
+      return;
+    }
+
     const commandUrl = `/api/manager/${this.state.command}`;
     setTimeout(() => {
       
@@ -85,55 +107,55 @@ class Manager extends React.Component {
         <div class="right">
           Example Usage:
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="open_map_view" />
+            <input type="text" value="ar DVD Star Wars" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="show" />
+            <input type="text" value="ar DVD Alien" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="status" />
+            <input type="text" value="ar DVD It" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="Ajax position 25 25 20" />
+            <input type="text" value="ac Favorites" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="Valdez load_at Shell" />
+            <input type="text" value="ac Dirty" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="create Chan Cruiser 20 26" />
+            <input type="text" value="mr 2 5" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="go" />
+            <input type="text" value="am Favorites 2" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="show" />
+            <input type="text" value="am Favorites 1" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="Ajax attack Xerxes" />
+            <input type="text" value="am Favorites 3" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="go" />
+            <input type="text" value="pL" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="show" />
+            <input type="text" value="pC" />
             <input type="submit" value="send" />
           </form>
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="quit" />
+            <input type="text" value="qq" />
             <input type="submit" value="send" />
           </form>
           <br></br>
-          After you quit, click on "Click me after quit" to restart! <br></br>
+          After you qq (quit), click on "Click me after quit" to restart! <br></br>
           There are more commands :) Check the links below <br></br><br></br>
           <a href="../static/commands/manager_commands.txt" target="_blank"> Commands </a>
           <br></br>
@@ -144,10 +166,10 @@ class Manager extends React.Component {
           <br></br>
           You can do multiple commands at once
           <form onSubmit={this.handleNothing} id="input-form">
-            <input type="text" value="open_map_view show status" />
+            <input type="text" value="pLpC" />
             <input type="submit" value="send" />
           </form>
-          WARNING: "quit" should always be alone!
+          WARNING: "qq" should always be alone!
         </div>
       </div>
     );

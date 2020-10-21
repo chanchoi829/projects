@@ -1,0 +1,79 @@
+fr <title> - find and print the record with the matching title. Case sensitive 
+Errors: title could not be read; no record with the title.
+
+fs <string> - find with string. Output all records in the Library whose 
+title contains the string. Case insensitive.
+Errors: No records contain the string.
+
+pr <ID> - print the specified record with the matching ID number. 
+Errors: can't read an integer, no record with that ID.
+
+pc <name> - print collection - print each record in the collection with the specified name.
+Errors: no collection with that name
+
+pL - print all the records in the Library.
+Errors: none.
+
+pC - print the Catalog - print all the collections in the Catalog.
+Errors: none.
+
+pa - print memory allocations - print the number of records and the number of collections.
+Errors: none.
+
+lr - list ratings. Ouput the Library in a descending order of rating.
+Errors: None.
+
+cs - collection statistics. Show how many Records appear in at least one Collection, 
+how many appear in more than one Collection, and the total of the number of Records 
+appearing in all Collections.
+Errors: None.
+
+cc <name1> <name2> <new name> - combine collections. Merge collections with names 
+<name1> and <name2> to create a new collection with <new name>
+Errors: No collections with names <name1> or <name2>; a collection's name is already <new name>
+
+ar <medium> <title> - add a record to the Library.
+Errors: Title could not be read; a record with that title is already in the Library.
+
+ac <name> - add a collection with the specified name.
+Errors: A collection with that name already exists.
+
+am <name> <ID> - add a record to a specified collection.
+Errors: No collection of that name; unable to read an integer; no record with that ID number,
+record is already a member of that collection.
+
+mr <ID> <rating> - modify the rating of the specified record with the matching ID.
+Errors: unable to read an integer for the ID; unable to read an integer for the rating; rating out of range
+
+mt <ID> <title> - modify the title of a record whose ID number is <ID>
+Errors: Unable to read an integer; no record with that ID; could not read a title; 
+there is already a record with that title.
+
+dr <title> - delete the specified collection from the Catalog.
+Errors: A collection with that name does not exist in the Catalog.
+
+dc <name> - delete the specified collection from the Catalog.
+Errors: A collection with that name does not exist in the Catalog.
+
+dm <name> <ID> - delete the specified record from a collection with the given name from the Catalog
+Errors: No collection with that name; unable to read an integer; no record with that ID number;
+record is not a member of the collection.
+
+cL - clear the Library; destroy all of the records in the Library only if the Catalog is empty.
+Errors: There are collections with members
+
+cC - clear the Catalog; destroy all of the collections in the Catalog, and clear the Catalog.
+Errors: None.
+
+cA - clear all data: first clear the Catalog like cC and clear the Library like cL.
+Errors: None.
+
+sA <filename> - save all data: write the Library and Catalog data to the named file.
+Errors: the file cannot be opened for output.
+
+rA <filename> - restore all data - restore the Library and Catalog data from the file.
+Errors: the file cannot be opened for input; invalid data is found in the file. If an error occurs
+while parsing the file, the Library and the Catalog revert back to the state before rA was called.
+
+qq - clear all data like cA and then terminate.
+Errors: none.
