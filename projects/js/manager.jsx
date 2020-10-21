@@ -78,6 +78,7 @@ class Manager extends React.Component {
             <input type="submit" value="send" />
           </form>
           <a href="http://www.chanchoi829.com/" target="_blank">Ship Game Simulation</a>
+          <br></br>
           <a href="http://www.chanchoi829.com/api/manager" target="_blank">Click me after "quit"</a>
           {display}
         </div>

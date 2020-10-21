@@ -78,6 +78,7 @@ class Simulation extends React.Component {
             <input type="submit" value="send" />
           </form>
           <a href="http://www.chanchoi829.com/manager" target="_blank">Media Manager</a>
+          <br></br>
           <a href="http://www.chanchoi829.com/api/simulation" target="_blank">Click me after "quit"</a>
           {display}
         </div>
